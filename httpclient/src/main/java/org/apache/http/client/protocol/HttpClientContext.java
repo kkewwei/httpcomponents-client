@@ -52,8 +52,8 @@ import org.apache.http.protocol.HttpCoreContext;
  * of HTTP request execution.
  *
  * @since 4.3
- */
-public class HttpClientContext extends HttpCoreContext {
+ */ //每次请求时都会产生一个，存放当前请的上下文，比如conn, request,route等以下属性，被包含在RequestContext构造器中
+public class HttpClientContext extends HttpCoreContext { 
 
     /**
      * Attribute name of a {@link org.apache.http.conn.routing.RouteInfo}

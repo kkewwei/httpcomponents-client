@@ -44,7 +44,7 @@ import org.apache.http.util.LangUtils;
  * The route for a request.
  *
  * @since 4.0
- */
+ *///以IP粒度
 @Contract(threading = ThreadingBehavior.IMMUTABLE)
 public final class HttpRoute implements RouteInfo, Cloneable {
 

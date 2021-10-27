@@ -40,7 +40,7 @@ import org.apache.http.message.AbstractHttpMessage;
 public abstract class AbstractExecutionAwareRequest extends AbstractHttpMessage implements
         HttpExecutionAware, AbortableHttpRequest, Cloneable, HttpRequest {
 
-    private final AtomicMarkableReference<Cancellable> cancellableRef;
+    private final AtomicMarkableReference<Cancellable> cancellableRef; // 该请求是否被标志取消了
 
     protected AbstractExecutionAwareRequest() {
         super();
@@ -138,11 +138,11 @@ public abstract class AbstractExecutionAwareRequest extends AbstractHttpMessage 
      */
     public void reset() {
         for (;;) {
-            final boolean marked = cancellableRef.isMarked();
+            final boolean marked = cancellableRef.isMarked(); // 是否被置位取消了
             final Cancellable actualCancellable = cancellableRef.getReference();
-            if (actualCancellable != null) {
+            if (actualCancellable != null) { //必须为空
                 actualCancellable.cancel();
-            }
+            } // cancellableRef置位没取消、没引用
             if (cancellableRef.compareAndSet(actualCancellable, null, marked, false)) {
                 break;
             }

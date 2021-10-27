@@ -38,7 +38,7 @@ import org.apache.http.protocol.HTTP;
  * that can be modified
  *
  * @since 4.0
- */
+ */ //http构造器
 public abstract class HttpEntityEnclosingRequestBase
     extends HttpRequestBase implements HttpEntityEnclosingRequest {
 

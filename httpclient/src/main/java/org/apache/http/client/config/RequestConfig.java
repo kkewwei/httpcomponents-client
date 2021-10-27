@@ -56,9 +56,9 @@ public class RequestConfig implements Cloneable {
     private final boolean authenticationEnabled;
     private final Collection<String> targetPreferredAuthSchemes;
     private final Collection<String> proxyPreferredAuthSchemes;
-    private final int connectionRequestTimeout;
-    private final int connectTimeout;
-    private final int socketTimeout;
+    private final int connectionRequestTimeout; // 从线程池中获取管道的时间，
+    private final int connectTimeout; // 在AbstractIOReactor.execute()里面的validate()调用AbstractIOReactor.timeoutCheck()检查这个管道对应的这个请求是否超时
+    private final int socketTimeout;// 指客户端和服务进行数据交互的时间，是指两者之间如果两个数据包之间的时间大于该时间则认为超时
     private final boolean contentCompressionEnabled;
     private final boolean normalizeUri;
 
@@ -415,9 +415,9 @@ public class RequestConfig implements Cloneable {
         private boolean authenticationEnabled;
         private Collection<String> targetPreferredAuthSchemes;
         private Collection<String> proxyPreferredAuthSchemes;
-        private int connectionRequestTimeout;
-        private int connectTimeout;
-        private int socketTimeout;
+        private int connectionRequestTimeout; // 指从连接池获取到连接的超时时间，如果是非连接池的话
+        private int connectTimeout; // 指建立连接的超时时间，比较容易理解
+        private int socketTimeout; // 指客户端和服务进行数据交互的时间，是指两者之间如果两个数据包之间的时间大于该时间则认为超时
         private boolean contentCompressionEnabled;
         private boolean normalizeUri;
 

@@ -54,7 +54,7 @@ public class HttpRequestWrapper extends AbstractHttpMessage implements HttpUriRe
     private final HttpRequest original;
     private final HttpHost target;
     private final String method;
-    private RequestLine requestLine;
+    private RequestLine requestLine;// BasicRequestLine
     private ProtocolVersion version;
     private URI uri;
 
@@ -109,7 +109,7 @@ public class HttpRequestWrapper extends AbstractHttpMessage implements HttpUriRe
 
     @Override
     public RequestLine getRequestLine() {
-        if (this.requestLine == null) {
+        if (this.requestLine == null) {// 直接条狗
             String requestUri;
             if (this.uri != null) {
                 requestUri = this.uri.toASCIIString();

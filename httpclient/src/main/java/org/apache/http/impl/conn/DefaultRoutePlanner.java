@@ -93,7 +93,7 @@ public class DefaultRoutePlanner implements HttpRoutePlanner {
         }
         final boolean secure = target.getSchemeName().equalsIgnoreCase("https");
         return proxy == null
-                        ? new HttpRoute(target, local, secure)
+                        ? new HttpRoute(target, local, secure) // 一个 http url就是一个HttpRoute
                         : new HttpRoute(target, local, proxy, secure);
     }
 
