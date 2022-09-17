@@ -44,7 +44,7 @@ public final class IdleConnectionEvictor {
     private final HttpClientConnectionManager connectionManager;
     private final ThreadFactory threadFactory;
     private final Thread thread;
-    private final long sleepTimeMs;
+    private final long sleepTimeMs;// 10S
     private final long maxIdleTimeMs;
 
     private volatile Exception exception;
@@ -56,7 +56,7 @@ public final class IdleConnectionEvictor {
             final long maxIdleTime, final TimeUnit maxIdleTimeUnit) {
         this.connectionManager = Args.notNull(connectionManager, "Connection manager");
         this.threadFactory = threadFactory != null ? threadFactory : new DefaultThreadFactory();
-        this.sleepTimeMs = sleepTimeUnit != null ? sleepTimeUnit.toMillis(sleepTime) : sleepTime;
+        this.sleepTimeMs = sleepTimeUnit != null ? sleepTimeUnit.toMillis(sleepTime) : sleepTime;//10s
         this.maxIdleTimeMs = maxIdleTimeUnit != null ? maxIdleTimeUnit.toMillis(maxIdleTime) : maxIdleTime;
         this.thread = this.threadFactory.newThread(new Runnable() {
             @Override
